@@ -76,9 +76,9 @@ export interface VideoRecorderPlugin {
 
 export interface VideoOptions {
     /**
-    * The source to get the photo from. By default this prompts the user to select
-    * either the photo album or take a photo.
-    * @default: CameraSource.Prompt
+    * The source to get the video from. By default this prompts the user to select
+    * either the video album or take a video.
+    * @default: VideoSource.Prompt
     *
     * @since 0.0.1
     */
@@ -104,7 +104,7 @@ export interface Video {
 
 export interface Videos {
     /**
-     * Array of all the picked photos.
+     * Array of all the picked videos.
      *
      * @since 0.0.1
      */
@@ -120,7 +120,7 @@ export interface GalleryVideoOptions {
      */
     presentationStyle?: 'fullscreen' | 'popover';
     /**
-     * iOS only: Maximum number of pictures the user will be able to choose.
+     * iOS only: Maximum number of videos the user will be able to choose.
      * @default 0 (unlimited)
      *
      * @since 0.0.1
@@ -130,15 +130,15 @@ export interface GalleryVideoOptions {
 
 export declare enum VideoSource {
     /**
-     * Prompts the user to select either the photo album or take a photo.
+     * Prompts the user to select either the video album or take a video.
      */
     Prompt = "PROMPT",
     /**
-     * Take a new photo using the camera.
+     * Take a new video using the camera.
      */
     Camera = "CAMERA",
     /**
-     * Pick an existing photo from the gallery or photo album.
+     * Pick an existing video from the gallery or video album.
      */
     Videos = "VIDEOS"
 }
