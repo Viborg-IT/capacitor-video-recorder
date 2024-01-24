@@ -108,7 +108,7 @@ export interface Videos {
      *
      * @since 0.0.1
      */
-    photos: Videos[];
+    photos: Video[];
 }
 
 export interface GalleryVideoOptions {
