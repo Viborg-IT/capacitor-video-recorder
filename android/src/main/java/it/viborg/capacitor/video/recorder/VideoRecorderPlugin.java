@@ -108,8 +108,8 @@ public class VideoRecorderPlugin extends Plugin {
     private void showPrompt(final PluginCall call) {
         // We have all necessary permissions, open the camera
         List<String> options = new ArrayList<>();
-        options.add(call.getString("promptLabelPhoto", "From Videos"));
-        options.add(call.getString("promptLabelPicture", "Take Video"));
+        options.add(call.getString("promptLabelVideos", "From Videos"));
+        options.add(call.getString("promptLabelVideo", "Take Video"));
 
         final VideoRecorderBottomSheetDialogFragment fragment = new VideoRecorderBottomSheetDialogFragment();
         fragment.setTitle(call.getString("promptLabelHeader", "Video"));
@@ -124,7 +124,7 @@ public class VideoRecorderPlugin extends Plugin {
                         openCamera(call);
                     }
                 },
-                () -> call.reject("User cancelled photos app")
+                () -> call.reject("User cancelled videos app")
         );
         fragment.show(getActivity().getSupportFragmentManager(), "capacitorModalsActionSheet");
     }
@@ -152,7 +152,6 @@ public class VideoRecorderPlugin extends Plugin {
         boolean needCameraPerms = isPermissionDeclared(CAMERA);
         boolean hasCameraPerms = !needCameraPerms || getPermissionState(CAMERA) == PermissionState.GRANTED;
 
-        // If we want to save to the gallery, we need two permissions
         if (!hasCameraPerms) {
             requestPermissionForAlias(CAMERA, call, "videoPermissionsCallback");
             return false;
@@ -203,7 +202,7 @@ public class VideoRecorderPlugin extends Plugin {
                 }
                 PermissionState permissionState = getPermissionState(alias);
                 if (permissionState != PermissionState.GRANTED) {
-                    Logger.debug(getLogTag(), "User denied photos permission: " + permissionState.toString());
+                    Logger.debug(getLogTag(), "User denied v ideos permission: " + permissionState.toString());
                     call.reject(PERMISSION_DENIED_ERROR_VIDEOS);
                     return;
                 }
@@ -298,7 +297,7 @@ public class VideoRecorderPlugin extends Plugin {
             call.reject(VIDEO_PROCESS_NO_FILE_ERROR);
             return;
         }
-        // Load the image as a Bitmap
+        
         File f = new File(videoFileSavePath);
         Uri contentUri = Uri.fromFile(f);
 
@@ -315,7 +314,7 @@ public class VideoRecorderPlugin extends Plugin {
         settings = getSettings(call);
         Intent data = result.getData();
         if (data == null) {
-            call.reject("No image picked");
+            call.reject("No video picked");
             return;
         }
 
@@ -348,8 +347,8 @@ public class VideoRecorderPlugin extends Plugin {
                                 }
                             }
                         } else if (data.getData() != null) {
-                            Uri imageUri = data.getData();
-                            JSObject processResult = processPickedVideos(imageUri);
+                            Uri videoUri = data.getData();
+                            JSObject processResult = processPickedVideos(videoUri);
                             if (processResult.getString("error") != null && !processResult.getString("error").isEmpty()) {
                                 call.reject(processResult.getString("error"));
                                 return;
@@ -385,12 +384,12 @@ public class VideoRecorderPlugin extends Plugin {
                                 }
                             }
                         }
-                        ret.put("photos", photos);
+                        ret.put("videos", photos);
                         call.resolve(ret);
                     }
             );
         } else {
-            call.reject("No images picked");
+            call.reject("No videos picked");
         }
     }
 
@@ -488,14 +487,14 @@ public class VideoRecorderPlugin extends Plugin {
     protected Bundle saveInstanceState() {
         Bundle bundle = super.saveInstanceState();
         if (bundle != null) {
-            bundle.putString("cameraImageFileSavePath", videoFileSavePath);
+            bundle.putString("cameraVideoFileSavePath", videoFileSavePath);
         }
         return bundle;
     }
 
     @Override
     protected void restoreState(Bundle state) {
-        String storedImageFileSavePath = state.getString("cameraImageFileSavePath");
+        String storedImageFileSavePath = state.getString("cameraVideoFileSavePath");
         if (storedImageFileSavePath != null) {
             videoFileSavePath = storedImageFileSavePath;
         }
