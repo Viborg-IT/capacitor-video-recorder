@@ -113,24 +113,24 @@ Request camera and video album permissions
 
 #### VideoOptions
 
-| Prop         | Type                                                | Description                                                                                                          | Default                            | Since |
-| ------------ | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----- |
-| **`source`** | <code><a href="#videosource">VideoSource</a></code> | The source to get the photo from. By default this prompts the user to select either the photo album or take a photo. | <code>: CameraSource.Prompt</code> | 0.0.1 |
+| Prop         | Type                                                | Description                                                                                                          | Default                           | Since |
+| ------------ | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----- |
+| **`source`** | <code><a href="#videosource">VideoSource</a></code> | The source to get the video from. By default this prompts the user to select either the video album or take a video. | <code>: VideoSource.Prompt</code> | 0.0.1 |
 
 
 #### Videos
 
-| Prop         | Type                  | Description                     | Since |
-| ------------ | --------------------- | ------------------------------- | ----- |
-| **`photos`** | <code>Videos[]</code> | Array of all the picked photos. | 0.0.1 |
+| Prop         | Type                 | Description                     | Since |
+| ------------ | -------------------- | ------------------------------- | ----- |
+| **`photos`** | <code>Video[]</code> | Array of all the picked videos. | 0.0.1 |
 
 
 #### GalleryVideoOptions
 
-| Prop                    | Type                                   | Description                                                           | Default                     | Since |
-| ----------------------- | -------------------------------------- | --------------------------------------------------------------------- | --------------------------- | ----- |
-| **`presentationStyle`** | <code>'fullscreen' \| 'popover'</code> | iOS only: The presentation style of the Camera.                       | <code>: 'fullscreen'</code> | 0.0.1 |
-| **`limit`**             | <code>number</code>                    | iOS only: Maximum number of pictures the user will be able to choose. | <code>0 (unlimited)</code>  | 0.0.1 |
+| Prop                    | Type                                   | Description                                                         | Default                     | Since |
+| ----------------------- | -------------------------------------- | ------------------------------------------------------------------- | --------------------------- | ----- |
+| **`presentationStyle`** | <code>'fullscreen' \| 'popover'</code> | iOS only: The presentation style of the Camera.                     | <code>: 'fullscreen'</code> | 0.0.1 |
+| **`limit`**             | <code>number</code>                    | iOS only: Maximum number of videos the user will be able to choose. | <code>0 (unlimited)</code>  | 0.0.1 |
 
 
 #### PermissionStatus
@@ -173,8 +173,8 @@ Request camera and video album permissions
 
 | Members      | Value                 | Description                                                        |
 | ------------ | --------------------- | ------------------------------------------------------------------ |
-| **`Prompt`** | <code>"PROMPT"</code> | Prompts the user to select either the photo album or take a photo. |
-| **`Camera`** | <code>"CAMERA"</code> | Take a new photo using the camera.                                 |
-| **`Videos`** | <code>"VIDEOS"</code> | Pick an existing photo from the gallery or photo album.            |
+| **`Prompt`** | <code>"PROMPT"</code> | Prompts the user to select either the video album or take a video. |
+| **`Camera`** | <code>"CAMERA"</code> | Take a new video using the camera.                                 |
+| **`Videos`** | <code>"VIDEOS"</code> | Pick an existing video from the gallery or video album.            |
 
 </docgen-api>
